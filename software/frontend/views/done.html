@@ -1,0 +1,117 @@
+<!--body class="bg-background font-body-md text-body-md text-on-surface min-h-screen flex flex-col"-->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant/30 active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Onboarding Complete</h1></div><div class="flex items-center gap-space-sm"><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-8">
+<div class="relative flex flex-col items-center text-center pt-2 pb-6 px-space-sm overflow-hidden">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-12 left-1/4 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative mb-5 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full bg-primary/20 blur-xl animate-pulse"></div>
+<div class="relative w-28 h-28 rounded-full bg-surface-container-high flex items-center justify-center shadow-lg">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Cute happy hamster mascot" class="w-20 h-20 object-contain drop-shadow-sm select-none transition-transform hover:scale-105 duration-300" src="assets/homestudio-symbol.svg"/>
+</div>
+</div>
+<div class="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-md animate-bounce" style="animation-duration: 2.2s;">
+<span class="material-symbols-outlined text-on-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+<div class="absolute bottom-1 -left-2 w-7 h-7 rounded-full bg-tertiary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-tertiary text-[16px]" style="font-variation-settings: 'FILL' 1;">arrow_back_ios_new</span>
+</div>
+<div class="absolute -bottom-1 -right-2 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[14px]">favorite</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/15 text-primary mb-3">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wider uppercase">Onboarding Complete</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mb-2 tracking-tight">
+      준비가 모두 끝났어요
+    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed max-w-[290px] whitespace-pre-line">
+      이제 '<span data-k="pet_name"></span>'의 소중한 밤과 낮을
+HomeStudio가 따스하게 기록할게요.
+    </p>
+</div>
+<div class="w-full flex flex-col gap-space-md">
+<div class="w-full bg-surface-container rounded-2xl p-5 shadow-sm">
+<div class="flex items-center justify-between pb-3.5 mb-3.5 border-b-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">tune</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">내 설정 요약</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">기본 프로필</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high/60">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-tertiary/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px] text-primary">pets</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">반려동물</span>
+<span class="font-label-lg text-label-lg text-on-surface font-medium"><span data-k="pet_name"></span> <span class="font-body-sm text-body-sm text-on-surface-variant" data-k="pet_detail">(골든 햄스터, 125g)</span></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high/60">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[19px]">bedtime</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">케어 데이 주기</span>
+<span class="font-label-lg text-label-lg text-on-surface font-medium" data-k="care_cycle">낮 12:00 ~ 익일 12:00</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-medium">야행성 모드</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high/60">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[19px]">videocam</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">스마트 카메라</span>
+<span class="font-label-lg text-label-lg text-on-surface font-medium">TVS-W1000</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm font-semibold" data-k="cam_short">연결 완료</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container-high/60">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-container/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[19px]">group</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">공동 집사 공유</span>
+<span class="font-label-lg text-label-lg text-on-surface font-medium" data-k="family">가족 1인 초대됨</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded-md">상태 탭에서 초대</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-low p-4 rounded-xl flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">작은 팁</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mt-0.5">
+          <span data-k="pet_name"></span>가 움직이기 시작하면 카메라가 활동 구간과 클립을 자동으로 기록합니다.
+        </p>
+</div>
+<button class="w-full min-h-[48px] p-space-md rounded-xl bg-surface-container text-primary font-label-md font-semibold flex items-center justify-between" id="btn-sensors" type="button"><span>Wi-Fi 센서 연결 (선택)</span><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="sticky bottom-4 z-20 pt-6 mt-auto">
+<button class="w-full h-14 rounded-2xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all hover:opacity-95" id="btn-home" type="button">
+<span>홈 대시보드로 이동하기</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div></main>

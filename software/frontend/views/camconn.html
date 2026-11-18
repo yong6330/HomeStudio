@@ -1,0 +1,145 @@
+<!--body class="bg-surface text-on-surface flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="돌아가기" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface truncate ml-space-xs">Discovery Sensor Setup</h1></div><div class="flex items-center gap-space-sm"><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-8">
+<!-- Step Progress Indicator -->
+<div class="flex items-center justify-between mb-space-md mt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary/20 text-primary font-label-sm text-label-sm">3</span>
+<span class="font-label-md text-label-md text-secondary">케이지 셋업 3단계</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-6 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+<!-- Header Section with Delightful Status Badge -->
+<div class="flex flex-col mb-space-lg">
+<div class="inline-flex items-center gap-space-xs self-start px-space-sm py-1 rounded-full bg-primary/10 text-primary mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide" data-k="badge">실시간 연결 성공</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+      카메라가 정상적으로 연결되었어요!
+    </h2>
+<p class="font-body-md text-body-md text-secondary">
+      라이브 화면 화각을 확인하고 카메라 이름을 지정해 주세요.
+    </p>
+</div>
+<!-- Live Snapshot Preview Card (16:9 ratio with nocturnal aesthetic) -->
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-surface-container-lowest shadow-xl mb-space-lg group">
+<!-- Camera Feed Snapshot Placeholder -->
+<img alt="케이지 최신 스냅샷" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700 ease-out" id="cam-img" src=""/>
+<!-- Ambient Scrim Gradients -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-surface-container-lowest/70 pointer-events-none"></div>
+<!-- Live Stream Badges (Top Bar) -->
+<div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-sm text-label-sm text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          <span data-k="live">LIVE 1080p 30fps</span>
+        </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px] text-tertiary" data-k="dp_icon">nightlight</span>
+          <span data-k="daypart">IR ON</span>
+        </span>
+</div>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px] text-primary" data-k="net_icon">wifi</span>
+        <span data-k="net_short">-42 dBm</span>
+      </div>
+</div>
+<!-- Center Reticle / Golden Framing Guide Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-24 h-24 rounded-full border border-primary/20 flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
+</div>
+</div>
+<!-- Status Banner (Bottom Overlay) -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-surface-container-high/90 backdrop-blur-md">
+<span class="material-symbols-outlined text-[16px] text-primary">videocam</span>
+<span class="font-label-sm text-label-sm text-on-surface" data-k="cam_label">정상 스트리밍 중</span>
+</div>
+<!-- Quick Fullscreen Preview Icon Button -->
+<button aria-label="전체화면 미리보기" class="w-8 h-8 rounded-full bg-surface-container-high/90 backdrop-blur-md flex items-center justify-center text-on-surface hover:bg-surface-bright transition-colors active:scale-95" id="btn-expand-preview" type="button">
+<span class="material-symbols-outlined text-[18px]">crop_free</span>
+</button>
+</div>
+</div>
+<!-- Camera Name & Device Details Card -->
+<div class="w-full bg-surface-container rounded-2xl p-space-md shadow-md mb-space-md flex flex-col gap-space-md">
+<!-- Editable Device Name Input -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface-variant" for="camera-name-input">
+          카메라 이름
+        </label>
+<span class="font-label-sm text-label-sm text-outline">언제든 변경 가능</span>
+</div>
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</div>
+<input class="w-full h-12 pl-10 pr-10 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-colors" id="camera-name-input" placeholder="카메라 이름을 입력하세요" type="text" maxlength="20" value=""/>
+<button aria-label="이름 지우기" class="absolute right-3 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" id="btn-clear-name" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+</div>
+<!-- Metadata Grid (3 Bento-style Stat Cards) -->
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs">
+<!-- Wi-Fi Mode -->
+<div class="flex flex-col bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center gap-1 text-secondary mb-1">
+<span class="material-symbols-outlined text-[14px] text-primary">wifi_tethering</span>
+<span class="font-label-sm text-label-sm truncate">연결 방식</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-medium truncate" data-k="net">5GHz 초고속</span>
+</div>
+<!-- Signal Strength -->
+<div class="flex flex-col bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center gap-1 text-secondary mb-1">
+<span class="material-symbols-outlined text-[14px] text-primary">lan</span>
+<span class="font-label-sm text-label-sm truncate">IP 주소</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-medium truncate" data-k="ip">우수 (99.8%)</span>
+</div>
+<!-- Firmware Version -->
+<div class="flex flex-col bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center gap-1 text-secondary mb-1">
+<span class="material-symbols-outlined text-[14px] text-primary">system_update_alt</span>
+<span class="font-label-sm text-label-sm truncate">펌웨어</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-medium truncate" data-k="fw">v2.4.1 최신</span>
+</div>
+</div>
+</div>
+<!-- Cage Zone Setup Guide Preview Card -->
+<div class="w-full bg-surface-container-low rounded-2xl p-space-md mb-space-lg flex items-start gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-0.5">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">
+        케이지 감지 영역 예고
+      </span>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+        다음 단계에서 케이지, 쳇바퀴, 먹이 그릇, 은신처의 감지 영역을 지정하게 됩니다.
+      </p>
+</div>
+</div>
+<!-- Primary CTA Action Container -->
+<div class="w-full flex flex-col gap-space-xs mt-auto">
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="camconn-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="camconn-error"></p></div>
+<button class="w-full h-14 rounded-2xl bg-primary-container text-on-primary-fixed font-headline-sm text-headline-sm flex items-center justify-center gap-space-xs shadow-lg hover:brightness-105 active:scale-[0.99] transition-all" id="btn-next-step" type="button">
+<span>다음: 케이지 영역 설정</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-outline mt-1">
+      카메라 계정 정보는 HomeStudio PC 안에 암호화되어 보관됩니다.
+    </p>
+</div>
+</div>
+</main>

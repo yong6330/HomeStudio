@@ -1,0 +1,20 @@
+# runtime / operational data
+data/
+events/
+logs/
+thumbnails/
+original_buffer/
+temp_buffer/
+secrets/
+ops/
+.venv/
+tools/ffmpeg/
+*.db
+*.sqlite*
+*.dpapi
+*.log
+*.pid
+__pycache__/
+*.pyc
+._*
+.DS_Store

@@ -1,0 +1,182 @@
+<!--body class="bg-background font-body-md text-body-md text-on-surface min-h-screen flex flex-col"-->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant/30 active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Pet Profile Setup</h1></div><div class="flex items-center gap-space-sm"><a href="#welcome" aria-label="계정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-8">
+<!-- Step Progress Indicator -->
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5 font-label-md text-label-md text-primary font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        <span data-k="step">1/5 단계</span>
+      </span>
+<span class="text-secondary font-label-sm text-label-sm">기본 정보 설정</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-500 ease-out" id="step-bar" style="width:20%"></div>
+</div>
+</div>
+<!-- Warm Mascot Greetings Banner -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container p-space-md mb-space-lg flex items-center justify-between shadow-sm">
+<div class="flex flex-col gap-0.5 z-10 max-w-[70%]">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm w-fit mb-1">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+        밤샘 안심 케어
+      </div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">계정 생성 및 약관 동의</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">HomeStudio에서 함께할 따뜻한 여정을 시작해요.</p>
+</div>
+<div class="relative w-16 h-16 flex-shrink-0 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/15 rounded-full blur-xl"></div>
+<img class="w-14 h-14 object-contain relative z-10" src="assets/art-signup.jpg"/>
+</div>
+</div>
+<!-- Registration Form Section -->
+<div class="flex flex-col gap-space-lg">
+<!-- Email Input Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between" for="user-email">
+<span>아이디 (이메일 주소)</span>
+<span class="text-primary font-label-sm text-label-sm">필수 항목</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[20px]">alternate_email</span>
+<input class="w-full h-12 pl-11 pr-10 rounded-xl bg-surface-container text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-all" id="user-email" placeholder="example@email.com" type="email" autocomplete="username"/>
+<span class="hidden material-symbols-outlined absolute right-3.5 text-primary text-[20px]" id="email-ok-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="hidden flex items-center gap-1 text-primary font-label-sm text-label-sm mt-0.5 pl-1" id="email-ok">
+<span class="material-symbols-outlined text-[14px]">check</span>
+        사용 가능한 이메일 형식입니다.
+      </p>
+</div>
+<!-- Invite Code Field (family join) -->
+<div class="hidden flex flex-col gap-1.5" id="invite-field">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between" for="invite-code">
+<span>가족 초대 코드</span>
+<span class="text-primary font-label-sm text-label-sm">필수 항목</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[20px]">diversity_1</span>
+<input class="w-full h-12 pl-11 pr-10 rounded-xl bg-surface-container text-on-surface placeholder:text-outline font-body-md text-body-md uppercase tracking-widest focus:outline-none focus:bg-surface-container-high transition-all" id="invite-code" placeholder="8자리 코드" type="text" maxlength="8" autocomplete="off"/>
+</div>
+</div>
+<!-- Password Input Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between" for="user-password">
+<span>비밀번호</span>
+<span class="text-secondary font-label-sm text-label-sm" data-k="strength"></span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[20px]">lock</span>
+<input class="w-full h-12 pl-11 pr-11 rounded-xl bg-surface-container text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-all" id="user-password" placeholder="비밀번호 입력" type="password" autocomplete="new-password"/>
+<button aria-label="Toggle password visibility" id="togglePassword" class="w-9 h-9 absolute right-1.5 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" id="pwdIcon">visibility_off</span>
+</button>
+</div>
+<!-- Password Strength Live Validation Grid -->
+<div class="grid grid-cols-2 gap-x-2 gap-y-1.5 p-3 rounded-xl bg-surface-container-low mt-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm" data-rule="length">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>8자 이상</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm" data-rule="upper">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>영문 대문자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm" data-rule="lower">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>영문 소문자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm" data-rule="digit">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>숫자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm col-span-2" data-rule="special">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>특수문자 (!@#$%^&amp;*) 포함</span>
+</div>
+</div>
+</div>
+<!-- Password Confirm Input Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="user-password-confirm">비밀번호 확인</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[20px]">lock_reset</span>
+<input class="w-full h-12 pl-11 pr-10 rounded-xl bg-surface-container text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-all" id="user-password-confirm" placeholder="비밀번호 재입력" type="password" autocomplete="new-password"/>
+<span class="hidden material-symbols-outlined absolute right-3.5 text-primary text-[20px]" id="match-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="hidden flex items-center gap-1 text-primary font-label-sm text-label-sm mt-0.5 pl-1" id="match-hint">
+<span class="material-symbols-outlined text-[14px]" id="match-hint-icon">check</span>
+        <span data-k="match">두 비밀번호가 완벽히 일치합니다.</span>
+      </p>
+</div>
+<!-- Terms and Conditions Card -->
+<div class="flex flex-col rounded-2xl bg-surface-container p-space-md gap-3 shadow-sm mt-1">
+<!-- Master Agreement Toggle -->
+<label class="flex items-center justify-between cursor-pointer select-none group py-1">
+<div class="flex items-center gap-3">
+<input class="peer sr-only" id="agree-all" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-high text-transparent peer-checked:bg-primary peer-checked:text-on-primary flex items-center justify-center transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">전체 동의</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">전체 선택</span>
+</label>
+<!-- Soft Tone Divider -->
+<div class="w-full h-px bg-surface-variant/40 my-0.5"></div>
+<!-- Item 1: Service Terms -->
+<div class="flex items-center justify-between py-1 group">
+<label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+<input class="peer sr-only agree" id="agree-terms" type="checkbox"/>
+<div class="w-5 h-5 rounded-md bg-surface-container-high text-transparent peer-checked:bg-primary/20 peer-checked:text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface truncate">[필수] 서비스 이용약관 동의</span>
+</label>
+<a class="px-2 py-1 text-secondary hover:text-primary transition-colors font-label-md text-label-md shrink-0 flex items-center gap-0.5" href="/terms" target="_blank" rel="noopener">
+<span>보기</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Item 2: Privacy Policy -->
+<div class="flex items-center justify-between py-1 group">
+<label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+<input class="peer sr-only agree" id="agree-privacy" type="checkbox"/>
+<div class="w-5 h-5 rounded-md bg-surface-container-high text-transparent peer-checked:bg-primary/20 peer-checked:text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface truncate">[필수] 개인정보 수집 및 이용 동의</span>
+</label>
+<a class="px-2 py-1 text-secondary hover:text-primary transition-colors font-label-md text-label-md shrink-0 flex items-center gap-0.5" href="/privacy" target="_blank" rel="noopener">
+<span>보기</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Item 3: Home Camera Recording Terms -->
+<div class="flex items-center justify-between py-1 group">
+<label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+<input class="peer sr-only agree" id="agree-camera" type="checkbox"/>
+<div class="w-5 h-5 rounded-md bg-surface-container-high text-transparent peer-checked:bg-primary/20 peer-checked:text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface truncate">[필수] 홈 캠 촬영 및 로컬 저장 안내 확인</span>
+</label>
+<a class="px-2 py-1 text-secondary hover:text-primary transition-colors font-label-md text-label-md shrink-0 flex items-center gap-0.5" href="/privacy#camera" target="_blank" rel="noopener">
+<span>보기</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Security & Privacy Reassurance Pill -->
+<div class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="leading-tight">영상은 집 PC에만 저장되고, Tailscale 암호화 사설망으로만 전달됩니다.</span>
+</div>
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="signup-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="signup-error"></p></div>
+<!-- Next Submission CTA Button -->
+<div class="pt-2">
+<button class="w-full h-12 rounded-xl bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-primary-fixed transition-all active:scale-[0.99] shadow-lg shadow-primary/10 disabled:opacity-40" id="btn-next" type="button" disabled>
+<span data-k="cta">다음 (2/5 단계)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div></main>

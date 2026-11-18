@@ -1,0 +1,131 @@
+<!--body class="bg-surface text-on-surface flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="돌아가기" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface truncate ml-space-xs">Wizard Hamster Profile</h1></div><div class="flex items-center gap-space-sm"><a href="#welcome" aria-label="계정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-8">
+<!-- Subtle Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-44 bg-primary/10 blur-3xl pointer-events-none rounded-full"></div>
+</div>
+<!-- Header Section -->
+<section class="mt-2 mb-6">
+<div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-high mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary" data-k="chip">초대 코드 입력</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">초대 코드를 입력해 주세요</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">가족 관리자에게 공유받은 8자리 코드를 입력하면 즉시 연결돼요.</p>
+</section>
+<!-- Code Input & Verification Area -->
+<section class="mb-5 flex flex-col gap-space-md">
+<!-- 8 Digit Segmented Display Box -->
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-secondary" for="invite-code-input">참여 코드 (8자리)</label>
+<span class="hidden inline-flex items-center gap-1 font-label-sm text-label-sm text-primary" id="code-ok">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          유효한 코드
+        </span>
+</div>
+<!-- Segmented Code Slots -->
+<div class="grid grid-cols-8 gap-1.5 w-full select-none cursor-text" id="code-slots"></div>
+<input class="sr-only" id="invite-code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="9" inputmode="text"/>
+<!-- Quick Paste Action Chip -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant" data-k="code_hint">코드 칸을 눌러 입력하세요</span>
+<button class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition-all flex items-center gap-1.5" id="btn-paste" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">content_paste</span>
+<span class="font-label-md text-label-md text-primary" data-k="paste_label">붙여넣기</span>
+</button>
+</div>
+</div>
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="join-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="join-error"></p></div>
+</section>
+<!-- Verified Home Preview Card -->
+<section class="hidden mb-6" id="preview">
+<div class="bg-surface-container p-5 rounded-xl shadow-xl flex flex-col gap-4 relative overflow-hidden">
+<!-- Glow Accent -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Status Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md text-primary tracking-wide">확인된 가족 홈</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest font-label-sm text-label-sm text-secondary">HomeStudio 보안인증</span>
+</div>
+<!-- Home Identity Banner -->
+<div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest p-1 shrink-0 flex items-center justify-center shadow-inner">
+<img alt="" class="w-full h-full object-contain" src="assets/homestudio-symbol.svg"/>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate" data-k="home_name"></h3>
+</div>
+<p class="font-body-sm text-body-sm text-secondary truncate" data-k="pet_line"></p>
+</div>
+</div>
+<!-- Home Details Metric Grid -->
+<div class="grid grid-cols-1 gap-2.5 pt-1">
+<!-- Item 1: Administrator -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-secondary">shield_person</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">대표 관리자</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium" data-k="admin">엄마집사 (bory_mom@...)</span>
+</div>
+<!-- Item 2: Connected Device -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-primary">videocam</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">등록 기기</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium" data-k="device">HomeStudio 캠 Pro 1대</span>
+</div>
+<!-- Item 3: Access Permissions Granted -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-tertiary">key</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">부여 권한</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">실시간 스냅샷 &amp; 타임라인 열람</span>
+</div>
+</div>
+</div>
+<!-- Trust Assurance Note -->
+<div class="flex items-start gap-2 pt-1 px-1">
+<span class="material-symbols-outlined text-[16px] text-outline mt-0.5">info</span>
+<p class="font-label-sm text-label-sm text-secondary">
+          <span data-k="note">참여하면 이 홈스페이스의 기록과 알림을 함께 볼 수 있습니다.</span>
+        </p>
+</div>
+</div>
+</section>
+<!-- Bottom Actions -->
+<section class="mt-auto flex flex-col items-center gap-3">
+<!-- Primary CTA Button -->
+<button class="w-full h-14 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-lg hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-40" id="btn-join" disabled type="button">
+<span>이 홈에 참여하기</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Support and Help Navigation -->
+<div class="flex flex-col items-center text-center px-2 py-1">
+<p class="font-label-sm text-label-sm text-secondary">
+        초대 코드가 없거나 만료되었나요? 관리자에게 재발급을 요청하세요.
+      </p>
+<button class="mt-1 font-label-md text-label-md text-primary hover:underline underline-offset-4 flex items-center gap-1" id="btn-nocode" type="button">
+<span>코드가 없어요</span>
+<span class="material-symbols-outlined text-[14px]">help_outline</span>
+</button>
+</div>
+</section>
+</div></main>

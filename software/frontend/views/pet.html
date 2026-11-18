@@ -1,0 +1,153 @@
+<!--body class="bg-background font-body-md text-body-md text-on-surface min-h-screen flex flex-col"-->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant/30 active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Pet Profile Setup</h1></div><div class="flex items-center gap-space-sm"><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-8">
+<!-- Progress Header Indicator -->
+<div class="flex flex-col gap-space-xs mt-2 mb-6" id="onb-progress">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="tracking-wide">온보딩 여정</span>
+<span class="text-primary font-label-md text-label-md">3/5 단계</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 60%"></div>
+</div>
+</div>
+<!-- Header Titles -->
+<div class="flex flex-col gap-space-xs mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface whitespace-pre-line tracking-tight">
+      우리의 작은 가족,
+반려동물을 소개해 주세요
+    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      소중한 햄스터의 맞춤 야간 케어 분석을 위해 필요해요.
+    </p>
+</div>
+<!-- Interactive Form Body -->
+<div class="flex flex-col gap-space-lg">
+<!-- Pet Avatar Uploader Card -->
+<div class="flex flex-col items-center justify-center p-space-lg bg-surface-container rounded-[20px]">
+<div class="relative w-[88px] h-[88px] flex items-center justify-center">
+<!-- Mint Glow Aura -->
+<div class="absolute inset-0 rounded-full bg-primary/10 blur-md"></div>
+<!-- Avatar Frame -->
+<div class="relative w-[88px] h-[88px] rounded-full p-[3px] bg-gradient-to-br from-primary via-primary/40 to-transparent flex items-center justify-center overflow-hidden">
+<div class="w-full h-full rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" id="pet-avatar" src="assets/art-pet.jpg"/>
+</div>
+</div>
+<!-- Camera Action Pill -->
+<input type="file" accept="image/jpeg,image/png" id="pet-photo" class="hidden"/><button aria-label="반려동물 사진 변경" id="btn-photo" class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-primary text-on-primary shadow-md flex items-center justify-center active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[17px]">photo_camera</span>
+</button>
+</div>
+<span class="mt-3 font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span data-k="photo_label">사진 등록</span>
+<span class="text-outline font-body-sm text-body-sm">(선택)</span>
+</span>
+</div>
+<!-- Input: Pet Name -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="pet-name-input">
+          반려동물 이름 <span class="text-primary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-outline">최대 10자</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-space-md rounded-xl bg-surface-container text-on-surface font-body-lg text-body-lg placeholder-outline focus:outline-none focus:bg-surface-container-high transition-colors" id="pet-name-input" placeholder="이름을 입력하세요" type="text" maxlength="10"/>
+<div class="hidden absolute right-3.5 flex items-center justify-center text-primary pointer-events-none" id="name-ok-icon">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="hidden flex items-center gap-1 text-primary font-body-sm text-body-sm mt-0.5" id="name-ok">
+<span class="material-symbols-outlined text-[15px]">favorite</span>
+<span>다정한 이름이네요! 밤하늘처럼 포근해요.</span>
+</div>
+</div>
+<!-- Selection: Species -->
+<div class="flex flex-col gap-2.5">
+<label class="font-label-lg text-label-lg text-on-surface">종류</label>
+<div aria-label="햄스터 종류 선택" class="grid grid-cols-2 gap-2" role="radiogroup">
+<!-- Selected Option -->
+<button aria-checked="true" data-species="골든 햄스터" class="species-chip flex items-center justify-between h-12 px-3.5 rounded-xl bg-surface-container-high text-primary font-label-md text-label-md shadow-sm transition-all text-left" role="radio" type="button">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            골든 햄스터
+          </span>
+<span class="material-symbols-outlined text-[18px]">radio_button_checked</span>
+</button>
+<!-- Unselected Option 1 -->
+<button aria-checked="false" data-species="드워프 햄스터" class="species-chip flex items-center justify-between h-12 px-3.5 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md active:bg-surface-container-high transition-all text-left" role="radio" type="button">
+<span>드워프 햄스터</span>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+<!-- Unselected Option 2 -->
+<button aria-checked="false" data-species="로보로브스키" class="species-chip flex items-center justify-between h-12 px-3.5 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md active:bg-surface-container-high transition-all text-left" role="radio" type="button">
+<span>로보로브스키</span>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+<!-- Unselected Option 3 -->
+<button aria-checked="false" data-species="기타 소동물" class="species-chip flex items-center justify-between h-12 px-3.5 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md active:bg-surface-container-high transition-all text-left" role="radio" type="button">
+<span>기타 소동물</span>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+<!-- Input: Birthday / Homecoming Date -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="pet-date-input">생일 또는 만난 날</label>
+<span class="font-body-sm text-body-sm text-outline">(선택)</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-space-md rounded-xl bg-surface-container text-on-surface font-body-lg text-body-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="pet-date-input" placeholder="YYYY-MM-DD" type="date"/>
+<div class="absolute right-3.5 flex items-center justify-center text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+</div>
+</div>
+<!-- Quick Attributes: Gender & Weight -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Gender Selector -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">성별</label>
+<div class="flex items-center gap-1.5 h-12 p-1 bg-surface-container rounded-xl">
+<button class="sex-btn flex-1 h-full rounded-lg text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 transition-colors hover:text-on-surface" data-sex="male" type="button">
+<span>남아</span>
+</button>
+<button class="sex-btn flex-1 h-full rounded-lg text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 transition-colors hover:text-on-surface" data-sex="female" type="button">
+<span class="material-symbols-outlined text-[14px]">female</span>
+<span>여아</span>
+</button>
+</div>
+</div>
+<!-- Weight Quick Input -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="pet-weight-input">현재 체중</label>
+<span class="font-label-sm text-label-sm text-outline">평균적</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-12 pl-space-md pr-10 rounded-xl bg-surface-container text-on-surface font-body-lg text-body-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="pet-weight-input" placeholder="0" type="text" inputmode="decimal"/>
+<span class="absolute right-3.5 font-label-md text-label-md text-on-surface-variant pointer-events-none">g</span>
+</div>
+</div>
+</div>
+<!-- Friendly Care Micro-Tip Card -->
+<div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-low text-on-surface-variant mt-1">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/20 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-tertiary-container text-[16px]">bedtime</span>
+</div>
+<p class="font-body-sm text-body-sm leading-relaxed">
+        골든 햄스터는 주로 자정 이후 활발히 챗바퀴를 이용해요. 등록된 체중과 품종을 토대로 야간 활동량을 정밀 감지합니다.
+      </p>
+</div>
+</div>
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="pet-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="pet-error"></p></div>
+<!-- Sticky CTA Anchor -->
+<div class="sticky bottom-0 inset-x-0 pt-6 pb-2 bg-gradient-to-t from-background via-background/95 to-transparent mt-6">
+<button class="w-full h-12 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-lg hover:brightness-105 active:scale-[0.98] transition-all" id="next-step-btn" type="button">
+<span data-k="next_label">다음 (4/5 단계)</span>
+<span class="material-symbols-outlined text-[18px]" data-k="next_icon">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>

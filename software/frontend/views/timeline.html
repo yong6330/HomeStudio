@@ -1,0 +1,123 @@
+<!--body class="hs-desktop hs-timeline bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm min-h-[44px]"><div class="flex flex-col"><div class="flex items-center gap-1.5"><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Timeline</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors" aria-label="알림" data-bell><span class="material-symbols-outlined text-[20px]">notifications</span></button><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="hs-main flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><p class="hs-view-loading" data-view-loading="timeline" role="status">타임라인을 불러오는 중이에요.</p><div class="hs-timeline-content flex flex-col w-full px-margin pb-12 gap-space-lg">
+<!-- Date Selector & Cycle Summary -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<button aria-label="이전 날짜" data-day="-1" class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-label="다음 날짜" data-day="1" disabled class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight" data-k="date_label">날짜 확인 중</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/10 text-primary" data-show="is_today">기록 중</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">케어 하루: <span data-k="care_cycle">12:00 ~ 익일 12:00</span></span>
+</div>
+</div>
+<button type="button" id="open-calendar" aria-label="날짜 달력 열기" aria-haspopup="dialog" aria-controls="calendar-dialog" class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">calendar_today</span></button>
+</div>
+<!-- Quick Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto py-1 -mx-margin px-margin no-scrollbar">
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shrink-0 shadow-sm transition-all" data-filter="all">
+<span class="">전체</span>
+<span class="px-1.5 py-0.2 bg-on-primary/20 rounded-full text-[10px]"><span data-k="count">0</span>건</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md shrink-0 hover:text-on-surface transition-all disabled:opacity-50" data-filter="wheel" disabled title="행동 분류는 준비 중이에요">
+<span class="">쳇바퀴</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md shrink-0 hover:text-on-surface transition-all disabled:opacity-50" data-filter="water" disabled title="행동 분류는 준비 중이에요">
+<span class="">식사·물병 구역</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md shrink-0 hover:text-on-surface transition-all disabled:opacity-50" data-filter="toilet" disabled title="화장실 구역을 먼저 설정해 주세요">
+<span>화장실</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md shrink-0 hover:text-on-surface transition-all disabled:opacity-50" data-filter="tunnel" disabled title="행동 분류는 준비 중이에요">
+<span class="">탐색/터널</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md shrink-0 hover:text-on-surface transition-all disabled:opacity-50" data-filter="repeat">
+<span class="">반복 행동</span>
+</button>
+</div>
+<section id="day-summary" class="hidden hs-timeline-summary p-space-md rounded-[20px] bg-surface-container flex items-center justify-between gap-space-md" aria-label="선택한 날짜 요약"><div class="min-w-0"><h2 class="font-label-lg font-semibold">이 날의 기록</h2><p class="font-body-sm text-on-surface-variant mt-1" data-k="timeline_takeaway"></p></div><a href="#report" data-report-link class="shrink-0 min-h-[44px] inline-flex items-center gap-1 px-3 rounded-lg bg-surface-container-high text-primary font-label-sm" aria-label="선택한 날짜의 돌봄 보고서 보기">보고서 보기 <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a></section>
+</section>
+<dialog id="calendar-dialog" class="hs-calendar-dialog" aria-labelledby="calendar-title"><div class="hs-calendar-shell"><div class="hs-calendar-head"><h2 id="calendar-title" class="font-headline-sm text-headline-sm font-semibold">기록 날짜 선택</h2><button type="button" id="calendar-close" class="hs-calendar-icon" aria-label="달력 닫기">×</button></div><div class="hs-calendar-month"><button type="button" id="calendar-prev" class="hs-calendar-icon" aria-label="이전 달">‹</button><strong id="calendar-month" aria-live="polite"></strong><button type="button" id="calendar-next" class="hs-calendar-icon" aria-label="다음 달">›</button></div><div class="hs-calendar-grid" role="grid" aria-label="달력"><div class="hs-calendar-week" role="row"><span role="columnheader">일</span><span role="columnheader">월</span><span role="columnheader">화</span><span role="columnheader">수</span><span role="columnheader">목</span><span role="columnheader">금</span><span role="columnheader">토</span></div><div id="calendar-days" class="hs-calendar-days" role="rowgroup"></div></div><p id="calendar-message" class="hs-calendar-message" role="status">기록 날짜를 불러오는 중이에요.</p><div class="hs-calendar-actions"><button type="button" id="calendar-today" class="hs-calendar-today">오늘</button><button type="button" id="calendar-retry" class="hs-calendar-retry hidden">다시 불러오기</button></div></div></dialog>
+<!-- Live Highlight Notification Pill -->
+<div class="hs-text-row flex items-center justify-between p-3.5 rounded-[18px] bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-2.5">
+<div class="relative w-2.5 h-2.5 flex items-center justify-center" data-show="is_today">
+<span class="absolute w-full h-full rounded-full bg-primary animate-ping opacity-75"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface" data-html="live_line">기록을 불러오는 중이에요</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant" data-k="live_meta">22.4°C / 48%</span>
+</div>
+<!-- Activity Timeline Feed -->
+<div class="flex flex-col gap-space-lg relative">
+<!-- Timeline Line Marker (Visual Guide) -->
+<div class="absolute left-4 top-4 bottom-4 w-0.5 bg-surface-container-high -z-0"></div>
+<!-- Session template -->
+<article data-tpl="session" class="timeline-card relative z-10 flex flex-col gap-3 p-space-md rounded-[20px] bg-surface-container shadow-md transition-all" data-type="water">
+<div class="hs-text-row flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary/15 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-k="icon">water_drop</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight" data-k="title">활동</h3>
+<span class="font-label-sm text-label-sm text-primary font-medium" data-k="range">03:12 ~ 03:18 (6분간 활동)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant">클립 <span data-k="nclips">3</span>개</span>
+</div>
+<!-- Stat Meta -->
+<div class="hs-wrap-row flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm px-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">route</span>
+          이동 거리 <span data-k="dist">1,840</span> px
+        </span>
+<span class="">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+          움직임 <span data-k="frames">120</span>프레임
+        </span>
+</div>
+<!-- AI Behavioral Memo Note -->
+<div class="p-3 rounded-[14px] bg-surface-container-low flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">auto_awesome</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+          <span data-k="memo">움직임이 감지되면 여기에 요약이 보여요.</span>
+        </p>
+</div>
+<!-- Video Clip Thumbnails (Horizontal Scroll) -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1">
+<span class="">감지된 녹화 영상</span>
+<span class="text-primary font-medium flex items-center gap-0.5">
+            카드를 누르면 자세히 봐요
+</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Clip 1 -->
+<a data-tpl="clip" aria-label="녹화 클립 재생" class="group relative aspect-[4/3] rounded-[14px] overflow-hidden bg-surface-container-highest cursor-pointer active:scale-95 transition-transform" href="#">
+<img class="w-full h-full object-cover" loading="lazy" data-img="thumb" src="">
+<div class="absolute inset-0 bg-surface-container-lowest/30 flex items-center justify-center group-hover:bg-surface-container-lowest/10 transition-colors">
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</div>
+</div>
+<span class="absolute bottom-1 left-1.5 font-label-sm text-[10px] text-on-surface bg-surface-container-lowest/80 px-1 py-0.2 rounded font-mono" data-k="t">03:12</span>
+</a>
+</div>
+</div>
+</article>
+<div class="hidden p-space-lg rounded-[20px] bg-surface-container text-center font-body-sm text-body-sm text-on-surface-variant relative z-10" id="empty">이 날은 기록된 활동이 없어요.</div>
+</div>
+
+</div>
+</main><nav aria-label="주 메뉴" class="hs-primary-nav fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.3)]" data-active-classes="text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5"><div class="flex justify-around items-center h-16 px-space-md"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#home"><span class="material-symbols-outlined text-[24px]">night_shelter</span><span class="font-label-md text-label-md">홈</span><span class="active-indicator rounded-full mt-0.5"></span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 transition-colors text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5" data-path="timeline" href="#timeline"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-md text-label-md">타임라인</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="status" href="#status"><svg class="hs-paw-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.1 10.1c1.2 0 2-1.3 1.8-2.8-.2-1.5-1.2-2.6-2.4-2.6S4.6 6 4.8 7.5c.2 1.5 1.1 2.6 2.3 2.6Zm4.9-1.2c1.3 0 2.2-1.4 2-3.1-.2-1.7-1.3-2.9-2.6-2.9s-2.1 1.4-1.9 3.1c.2 1.7 1.2 2.9 2.5 2.9Zm4.9 1.2c1.2 0 2.1-1.1 2.3-2.6.2-1.5-.5-2.8-1.7-2.8s-2.2 1.1-2.4 2.6c-.2 1.5.6 2.8 1.8 2.8ZM4.7 13.1c-.9-1-2.3-.8-3 .4-.8 1.1-.7 2.8.2 3.8.9 1 2.3.8 3-.4.8-1.1.7-2.8-.2-3.8Zm14.6 0c-.9 1-.9 2.7-.2 3.8.8 1.2 2.2 1.4 3 .4.9-1 .9-2.7.2-3.8-.8-1.2-2.2-1.4-3-.4ZM12 10c-3.5 0-7 3.9-7 7.5 0 2.5 1.7 3.9 3.8 3.1 1.9-.7 4.5-.7 6.4 0 2.1.8 3.8-.6 3.8-3.1 0-3.6-3.5-7.5-7-7.5Z"/></svg><span class="font-label-md text-label-md">상태</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-md text-label-md whitespace-nowrap">설정</span><span class="active-indicator rounded-full mt-0.5"></span></a></div></nav>
+

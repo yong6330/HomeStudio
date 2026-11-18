@@ -1,0 +1,196 @@
+<!--body class="hs-desktop hs-home bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm min-h-[44px]"><div class="flex flex-col"><div class="flex items-center gap-1.5"><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Home</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors" aria-label="알림" data-bell><span class="material-symbols-outlined text-[20px]">notifications</span></button><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="hs-main flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><p class="hs-view-loading" data-view-loading="home" role="status">홈 기록을 불러오는 중이에요.</p><div class="hs-home-layout flex flex-col w-full px-margin pb-8 space-y-4">
+<!-- Top Pet Selector & Date Navigator -->
+<div class="hs-home-heading flex flex-col space-y-3 pt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">오늘의 햄스터</h1>
+<div class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md">
+<span class="" data-k="pet_name"></span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<a href="#settings" aria-label="설정" class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</a>
+<span class="shrink-0 px-3 py-1.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm font-semibold whitespace-nowrap" data-k="mode_now">정상 작동</span>
+</div>
+</div>
+<!-- Date Navigation Strip -->
+<div class="flex items-center justify-between bg-surface-container px-3 py-2 rounded-2xl shadow-sm">
+<button aria-label="이전 날짜" data-day="-1" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<div class="flex flex-col items-center">
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold" data-k="date_label">날짜 확인 중</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary" data-show="is_today"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">케어 주기: <span data-k="care_cycle">12:00 ~ 익일 12:00</span></span>
+</div>
+<button aria-label="다음 날짜" data-day="1" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant disabled:opacity-40 disabled:cursor-not-allowed hover:text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="hs-home-columns">
+<div class="hs-home-primary">
+<section class="hs-home-live-card p-3 rounded-[20px] bg-surface-container shadow-sm" aria-labelledby="home-live-title" data-show="is_today">
+<div class="flex items-start justify-between gap-3 mb-2"><div class="min-w-0"><h2 id="home-live-title" class="font-label-lg text-on-surface font-semibold">실시간 카메라</h2><p class="font-body-sm text-on-surface-variant mt-1" data-k="home-live-state">지금 모습을 확인하고 있어요</p></div><a href="#live" class="shrink-0 min-h-[44px] inline-flex items-center gap-1 px-3 rounded-full bg-primary text-on-primary font-label-sm font-semibold" aria-label="실시간 라이브 룸 열기"><span class="material-symbols-outlined text-[18px]">videocam</span><span>라이브 룸</span></a></div>
+<div class="hs-home-live-frame rounded-xl overflow-hidden bg-surface-container-high"><img data-img="home-snapshot" alt="케이지의 최신 카메라 장면" class="w-full h-full object-cover" style="opacity:0" loading="eager"></div>
+<p class="font-label-sm text-on-surface-variant mt-2" data-k="home-live-note">최신 장면을 확인하고 있어요.</p>
+</section>
+</div>
+<div class="hs-home-side">
+<!-- Recent records reuse the care-day events already fetched for this home view. -->
+<section class="hs-home-records" aria-labelledby="recent-records-title">
+<div class="flex items-center justify-between">
+<h2 id="recent-records-title" class="font-headline-sm text-headline-sm text-on-surface">최근 활동 기록</h2>
+<a href="#timeline" class="hs-action text-primary font-label-md text-label-md min-h-[44px] flex items-center" data-records-all>전체 기록</a>
+</div>
+<p class="p-4 rounded-[20px] bg-surface-container text-on-surface-variant font-body-sm text-body-sm" data-show="records_empty">아직 이 날의 활동 기록이 없어요. 움직임이 감지되면 여기에 표시해요.</p>
+<div class="hs-record-list">
+<a data-tpl="recent-record" href="#timeline" class="hs-record p-4 rounded-[20px] bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors">
+<span class="flex items-center justify-between"><span class="font-headline-sm text-headline-sm" data-k="record_time"></span><span class="material-symbols-outlined text-primary text-[20px]">chevron_right</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" data-k="record_detail"></span>
+<span class="font-label-md text-label-md text-primary" data-k="record_action"></span>
+</a>
+</div>
+</section>
+<div class="hs-home-stats grid grid-cols-3 gap-2.5 w-full">
+<!-- Stat 1: 활동 시간 -->
+<div class="p-3.5 rounded-[20px] bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-sm text-label-sm font-medium">활동 시간</span>
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+</div>
+<div>
+<div class="flex items-baseline space-x-0.5">
+<span class="font-headline-md text-headline-md text-on-surface font-bold" data-k="active_min">—</span>
+<span class="font-label-md text-label-md text-on-surface-variant">분</span>
+</div>
+<div class="flex items-center space-x-0.5 mt-1 text-primary" data-cls="delta_cls">
+<span class="material-symbols-outlined text-[12px]" data-k="delta_icon">arrow_upward</span>
+<span class="font-label-sm text-label-sm font-medium" data-k="delta">어제와 비교</span>
+</div>
+</div>
+</div>
+<!-- Stat 2: 활동 횟수 -->
+<div class="p-3.5 rounded-[20px] bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-sm text-label-sm font-medium">활동 횟수</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">motion_photos_on</span>
+</div>
+<div>
+<div class="flex items-baseline space-x-0.5">
+<span class="font-headline-md text-headline-md text-on-surface font-bold" data-k="sessions">—</span>
+<span class="font-label-md text-label-md text-on-surface-variant">회</span>
+</div>
+<div class="flex items-center space-x-0.5 mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px]">sync</span>
+<span class="font-label-sm text-label-sm" data-k="clips">기록 확인 중</span>
+</div>
+</div>
+</div>
+<!-- Stat 3: 이동 거리 (px) -->
+<div class="p-3.5 rounded-[20px] bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-sm text-label-sm font-medium">이동 궤적</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">pets</span>
+</div>
+<div>
+<div class="flex items-baseline space-x-0.5">
+<span class="font-headline-md text-headline-md text-on-surface font-bold truncate" data-k="distance">—</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">px</span>
+</div>
+<div class="inline-flex items-center mt-1 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-[10px]">
+<span class="" data-k="level">기록 확인 중</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 7-Day Comparison Banner -->
+<div id="home-comparison" class="hs-home-comparison w-full p-4 rounded-[20px] bg-surface-container-low flex items-center space-x-3">
+<div class="w-10 h-10 rounded-2xl bg-primary-container/20 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[22px]">energy_savings_leaf</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-1.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold" data-k="cmp_title">기준을 확인하고 있어요</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+        <span data-k="cmp_text">관찰 기록을 불러오고 있어요.</span>
+      </p>
+</div>
+</div>
+</div>
+</div>
+<a href="#report" data-report-link class="hs-home-report w-full p-4 rounded-[20px] bg-surface-container-low flex items-center justify-between gap-3" aria-label="선택한 날짜의 돌봄 기록 보기"><span class="flex items-center gap-3 min-w-0"><span class="w-10 h-10 rounded-2xl bg-primary-container/20 flex items-center justify-center shrink-0 text-primary"><span class="material-symbols-outlined">history</span></span><span class="hs-home-report-copy"><span class="font-label-lg text-label-lg text-on-surface font-semibold" data-k="report_title">오늘 돌봄 기록</span><span class="font-body-sm text-on-surface-variant" data-k="report_teaser">관찰 기록과 수집 범위를 확인해요</span></span></span><span class="material-symbols-outlined text-primary">arrow_forward</span></a>
+<!-- 24-Hour Nocturnal Activity Bar Chart (Noon to Noon: 12:00 ~ 12:00) -->
+<div class="hs-home-chart w-full p-5 rounded-[20px] bg-surface-container shadow-sm flex flex-col space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">시간대별 활동 리듬</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] bg-tertiary-container/20 text-tertiary font-medium">야행성 주기</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5" data-k="chart_sub">정오(12:00)부터 익일 정오(12:00) 기준 집계</span>
+</div>
+<button aria-label="차트 정보 보기" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+</div>
+<!-- Chart Container -->
+<div class="relative w-full pt-8 pb-2">
+<!-- "Now" Tooltip Floating Bubble -->
+<div class="absolute top-0 w-full pointer-events-none" id="now-bubble">
+<div class="px-2 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm font-semibold shadow-md whitespace-nowrap flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+<span class="" data-k="bubble">지금 03:14 (8분)</span>
+</div>
+<div class="w-2 h-2 bg-primary rotate-45 -mt-1"></div>
+</div>
+<!-- Midnight Peak Highlight Range Background Bar -->
+<div class="absolute inset-y-6 left-[41%] right-[20%] bg-surface-container-high/40 rounded-xl pointer-events-none -z-0">
+<div class="absolute top-1 left-2 text-[10px] text-tertiary/70 font-medium tracking-tight">야간 피크존</div>
+</div>
+<!-- SVG Bars (24 slots: 12:00 -> 12:00) -->
+<div class="relative z-10 w-full h-32 flex items-end justify-between px-1" id="bars"></div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center text-[10px] text-on-surface-variant mt-2 font-mono px-0.5">
+<span class="" data-k="ax0">12시</span>
+<span class="" data-k="ax1">15시</span>
+<span class="" data-k="ax2">18시</span>
+<span class="" data-k="ax3">21시</span>
+<span class="text-tertiary font-semibold" data-k="ax4">00시</span>
+<span class="text-primary font-bold" data-k="ax5">03시</span>
+<span class="" data-k="ax6">06시</span>
+<span class="" data-k="ax7">09시</span>
+<span class="" data-k="ax8">12시</span>
+</div>
+</div>
+<!-- Chart Legend Strip -->
+<div class="flex items-center justify-around pt-3 bg-surface-container-low/60 rounded-xl px-2 py-2">
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">활동 기록 없음</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm text-tertiary">야간 피크</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-primary font-semibold" data-k="legend_now">현재 활동 (03:14)</span>
+</div>
+</div>
+</div>
+<!-- Care Insights Quick Action Banner -->
+<section class="hs-home-zones p-4 rounded-[20px] bg-surface-container shadow-sm" aria-labelledby="home-zones-title">
+<div class="hs-home-zone-heading"><div><h2 id="home-zones-title" class="font-label-lg text-on-surface font-semibold">구역별 활동 기록</h2><p class="font-body-sm text-on-surface-variant">위치 표본 · 점의 밀집도는 체류 시간을 뜻하지 않아요.</p></div><a href="#report" class="hs-action px-3 py-2 rounded-full bg-surface-container-high text-on-surface font-label-md min-h-[44px] flex items-center">하루 보고서</a></div>
+<div class="hs-map-controls"><label>표시 방식<select data-map-mode aria-label="위치 지도 표시 방식"><option value="density" selected>위치 분포</option><option value="path">클립 경로</option></select></label><label data-map-clip-wrap class="hidden">클립 선택<select data-map-clip aria-label="경로를 볼 클립"></select></label></div>
+<div class="hs-home-zone-layout"><svg id="home-zone-map" class="hs-report-map" role="img" aria-label="위치 표본과 구역 지도" viewBox="0 0 160 90" preserveAspectRatio="xMidYMid meet"><g data-map-zones></g><g data-map-density></g><g data-map-tracks></g><g data-map-labels></g></svg><div class="hs-home-zone-list" id="home-zone-list"><div data-tpl="home-zone" class="hs-report-row"><span data-k="home_zone_name"></span><span class="hs-zone-meter"><span data-home-zone-bar></span></span><span data-k="home_zone_dwell"></span></div></div></div>
+</section>
+</div></main><nav aria-label="주 메뉴" class="hs-primary-nav fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.3)]" data-active-classes="text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5"><div class="flex justify-around items-center h-16 px-space-md"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 transition-colors text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5" data-path="home" href="#home"><span class="material-symbols-outlined text-[24px]">night_shelter</span><span class="font-label-md text-label-md">홈</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="timeline" href="#timeline"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-md text-label-md">타임라인</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="status" href="#status"><svg class="hs-paw-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.1 10.1c1.2 0 2-1.3 1.8-2.8-.2-1.5-1.2-2.6-2.4-2.6S4.6 6 4.8 7.5c.2 1.5 1.1 2.6 2.3 2.6Zm4.9-1.2c1.3 0 2.2-1.4 2-3.1-.2-1.7-1.3-2.9-2.6-2.9s-2.1 1.4-1.9 3.1c.2 1.7 1.2 2.9 2.5 2.9Zm4.9 1.2c1.2 0 2.1-1.1 2.3-2.6.2-1.5-.5-2.8-1.7-2.8s-2.2 1.1-2.4 2.6c-.2 1.5.6 2.8 1.8 2.8ZM4.7 13.1c-.9-1-2.3-.8-3 .4-.8 1.1-.7 2.8.2 3.8.9 1 2.3.8 3-.4.8-1.1.7-2.8-.2-3.8Zm14.6 0c-.9 1-.9 2.7-.2 3.8.8 1.2 2.2 1.4 3 .4.9-1 .9-2.7.2-3.8-.8-1.2-2.2-1.4-3-.4ZM12 10c-3.5 0-7 3.9-7 7.5 0 2.5 1.7 3.9 3.8 3.1 1.9-.7 4.5-.7 6.4 0 2.1.8 3.8-.6 3.8-3.1 0-3.6-3.5-7.5-7-7.5Z"/></svg><span class="font-label-md text-label-md">상태</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-md text-label-md whitespace-nowrap">설정</span><span class="active-indicator rounded-full mt-0.5"></span></a></div></nav>
+

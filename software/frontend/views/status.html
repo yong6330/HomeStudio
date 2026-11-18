@@ -1,0 +1,82 @@
+<!--body class="hs-desktop hs-status bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm min-h-[44px]"><div class="flex flex-col"><div class="flex items-center gap-1.5"><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Status</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors" aria-label="알림" data-bell><span class="material-symbols-outlined text-[20px]">notifications</span></button><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="hs-main flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin py-space-md gap-space-lg text-on-surface">
+<!-- Screen Heading -->
+<div class="hs-status-heading flex flex-col gap-space-xs">
+<div class="hs-wrap-row flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface tracking-tight"><span data-k="page_title">상태</span></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-k="page_sub">반려동물, 케어 시작 시간, 구역과 행동 관찰</p>
+</div>
+<a href="#report" data-report-link class="hs-status-report p-space-md rounded-xl bg-surface-container flex items-center justify-between gap-3"><span class="hs-home-report-copy"><strong class="font-label-md" data-k="report_heading">오늘 돌봄 기록</strong><span class="font-body-sm text-on-surface-variant">관찰 기록과 수집 범위를 확인해요</span></span><span class="material-symbols-outlined text-primary">arrow_forward</span></a>
+<!-- Nocturnal Care-Day Configuration -->
+<div class="hs-status-care rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/30 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[18px]">bedtime</span>
+</div>
+<div class="min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">돌봄 설정</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">케어 시작 시각과 반려동물 정보</p>
+</div>
+</div>
+<button class="shrink-0 min-h-[44px] px-3 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 hover:opacity-90 transition-opacity disabled:opacity-40" type="button" id="btn-care" data-admin>
+<span>시간 변경</span>
+</button>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="hs-wrap-row flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">통계 시작 시각</span>
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-tertiary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[18px]">wb_sunny</span>
+          <span data-k="care_start">낮 12:00 (정오)</span>
+        </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        야행성 소동물의 활동 패턴에 맞춰 매일 <span data-k="care_cycle">낮 12:00부터 익일 낮 12:00</span>까지의 활동 데이터를 하루 단위로 묶어 분석합니다.
+      </p>
+
+</div>
+<div class="hs-status-care-info">
+<section class="p-space-md rounded-xl bg-surface-container-low"><h4 class="font-label-md font-semibold">반려동물</h4><p class="font-body-sm mt-1" data-k="status_pet_name">이름 미등록</p><p class="font-label-sm text-on-surface-variant mt-1" data-k="status_pet_detail"></p></section>
+<section class="p-space-md rounded-xl bg-surface-container-low"><h4 class="font-label-md font-semibold">관찰 구역</h4><p id="status-zone-empty" class="font-label-sm text-on-surface-variant mt-1">구역 정보 확인 중</p><div class="hs-status-zone-list"><span data-tpl="status-zone" class="hs-status-zone"><span data-k="status_zone_name"></span></span></div></section>
+</div>
+<div class="hs-status-actions"><button class="min-h-[44px] px-space-md rounded-xl bg-surface-container-high text-on-surface font-label-md" type="button" id="btn-petedit" data-admin>동물 정보</button><button class="min-h-[44px] px-space-md rounded-xl bg-surface-container-high text-on-surface font-label-md" type="button" id="btn-zones" data-admin>관찰 구역 관리</button></div>
+</div>
+<!-- 행동 건강 (same card + row components as the device log) -->
+<div class="hs-status-behavior rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">행동 건강</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant" data-k="beh_sub">데이터 모으는 중</p>
+</div>
+</div>
+<div class="flex flex-col gap-2.5">
+<div data-tpl="beh" class="hs-text-row p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full shrink-0" data-cls="dot"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface font-medium" data-k="title"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" data-k="sub"></span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0" data-k="when"></span>
+</div>
+</div>
+<section id="status-observations" class="hs-observation-list hidden" aria-labelledby="status-observations-title">
+<h4 id="status-observations-title" class="font-label-md font-semibold">영상에서 살펴볼 동작 · 대표 구간</h4>
+<p class="font-label-sm text-on-surface-variant" data-k="status_observation_summary"></p>
+<div class="flex flex-col gap-2"><a data-tpl="status-observation" class="hs-observation-row" href="#session/"><span class="hs-observation-row-main"><strong data-k="title"></strong><span data-k="time"></span><small data-k="meta"></small></span><span class="hs-observation-state" data-k="state"></span></a></div>
+</section>
+</div>
+<!-- Reassurance Footnote -->
+<div class="hs-status-footnote flex items-center justify-center gap-2 py-space-sm text-on-surface-variant/80">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-label-sm text-label-sm">HomeStudio 로컬 저장 · Tailscale 사설망 전용</span>
+</div>
+</div>
+</main><nav aria-label="주 메뉴" class="hs-primary-nav fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.3)]" data-active-classes="text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5"><div class="flex justify-around items-center h-16 px-space-md"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#home"><span class="material-symbols-outlined text-[24px]">night_shelter</span><span class="font-label-md text-label-md">홈</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="timeline" href="#timeline"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-md text-label-md">타임라인</span><span class="active-indicator rounded-full mt-0.5"></span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 transition-colors text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5" data-path="status" href="#status"><svg class="hs-paw-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.1 10.1c1.2 0 2-1.3 1.8-2.8-.2-1.5-1.2-2.6-2.4-2.6S4.6 6 4.8 7.5c.2 1.5 1.1 2.6 2.3 2.6Zm4.9-1.2c1.3 0 2.2-1.4 2-3.1-.2-1.7-1.3-2.9-2.6-2.9s-2.1 1.4-1.9 3.1c.2 1.7 1.2 2.9 2.5 2.9Zm4.9 1.2c1.2 0 2.1-1.1 2.3-2.6.2-1.5-.5-2.8-1.7-2.8s-2.2 1.1-2.4 2.6c-.2 1.5.6 2.8 1.8 2.8ZM4.7 13.1c-.9-1-2.3-.8-3 .4-.8 1.1-.7 2.8.2 3.8.9 1 2.3.8 3-.4.8-1.1.7-2.8-.2-3.8Zm14.6 0c-.9 1-.9 2.7-.2 3.8.8 1.2 2.2 1.4 3 .4.9-1 .9-2.7.2-3.8-.8-1.2-2.2-1.4-3-.4ZM12 10c-3.5 0-7 3.9-7 7.5 0 2.5 1.7 3.9 3.8 3.1 1.9-.7 4.5-.7 6.4 0 2.1.8 3.8-.6 3.8-3.1 0-3.6-3.5-7.5-7-7.5Z"/></svg><span class="font-label-md text-label-md">상태</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-md text-label-md whitespace-nowrap">설정</span><span class="active-indicator rounded-full mt-0.5"></span></a></div></nav>
+

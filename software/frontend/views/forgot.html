@@ -1,0 +1,103 @@
+<!--body class="bg-background font-body-md text-body-md text-on-surface min-h-screen flex flex-col"-->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant/30 active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Password Reset</h1></div><a href="#welcome" aria-label="계정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-8">
+<!-- Subtle Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-44 bg-primary/10 blur-3xl pointer-events-none rounded-full"></div>
+</div>
+<!-- Header Welcome Greeting Section -->
+<div class="flex flex-col pt-3 pb-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high w-fit mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">계정 복구</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight whitespace-pre-line leading-snug">비밀번호를
+다시 설정해주세요</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5">가입한 이메일로 6자리 재설정 코드를 보내드려요.</p>
+</div>
+<!-- Form Container -->
+<form class="flex flex-col gap-4" id="reset-form" novalidate>
+<!-- Email Field (Valid State) -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between" for="email">
+<span>이메일</span>
+<span class="hidden font-label-sm text-label-sm text-primary flex items-center gap-0.5" id="email-ok">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+          코드 발송됨
+        </span>
+</label>
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full h-13 py-3.5 pl-11 pr-11 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-colors" id="email" placeholder="이메일을 입력하세요" type="email" autocomplete="username" required/>
+<div class="hidden absolute right-3.5 flex items-center justify-center pointer-events-none text-primary" id="email-ok-icon">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 reset-step2 hidden">
+<label class="font-label-md text-label-md text-on-surface-variant" for="reset-code">재설정 코드 (6자리)</label>
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">pin</span>
+</div>
+<input class="w-full h-13 py-3.5 pl-11 pr-11 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-colors" id="reset-code" placeholder="000000" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 reset-step2 hidden">
+<label class="font-label-md text-label-md text-on-surface-variant" for="reset-password">새 비밀번호</label>
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full h-13 py-3.5 pl-11 pr-11 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-colors" id="reset-password" placeholder="새 비밀번호" type="password" autocomplete="new-password"/>
+</div>
+</div>
+<div class="reset-step2 hidden"><div class="grid grid-cols-2 gap-x-2 gap-y-1.5 p-3 rounded-xl bg-surface-container-low mt-1">
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>8자 이상</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>영문 대문자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>영문 소문자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>숫자 포함</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm col-span-2">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">radio_button_unchecked</span>
+<span>특수문자 (!@#$%^&amp;*) 포함</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 reset-step2 hidden">
+<label class="font-label-md text-label-md text-on-surface-variant" for="reset-confirm">새 비밀번호 확인</label>
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+</div>
+<input class="w-full h-13 py-3.5 pl-11 pr-11 rounded-xl bg-surface-container text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-high transition-colors" id="reset-confirm" placeholder="비밀번호 재입력" type="password" autocomplete="new-password"/>
+</div>
+</div>
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="reset-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="reset-error"></p></div>
+<!-- Primary Login Button -->
+<button class="w-full h-[52px] mt-2 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(52,211,153,0.2)] hover:opacity-95 active:scale-[0.99] transition-all" type="submit">
+<span id="reset-cta">재설정 코드 받기</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Bottom Navigation / Signup Helper -->
+<div class="mt-8 pt-2 flex items-center justify-center gap-1 text-center">
+<span class="font-body-md text-body-md text-on-surface-variant">비밀번호가 기억나셨나요?</span>
+<button class="font-label-lg text-label-lg text-primary hover:underline transition-all ml-1" id="btn-login" type="button">
+      로그인하기
+    </button>
+</div>
+</div>
+</main>

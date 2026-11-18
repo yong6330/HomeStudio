@@ -1,0 +1,237 @@
+<!--body class="hs-desktop hs-settings bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm min-h-[44px]"><div class="flex flex-col"><div class="flex items-center gap-1.5"><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Settings</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-colors" aria-label="알림" data-bell><span class="material-symbols-outlined text-[20px]">notifications</span></button><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="hs-main flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin py-space-md gap-space-lg text-on-surface">
+<!-- Screen Heading -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface tracking-tight">설정</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-k="page_sub">계정, 가족, 기기</p>
+</div>
+<!-- Account & Family (same card component as care-day) -->
+<div class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">계정 &amp; 가족 공유</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant" data-k="me">-</p>
+</div>
+</div>
+<div class="flex flex-col gap-2.5" id="members"><div data-tpl="member" class="hs-text-row p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-primary shrink-0" data-cls="dot"></span><span class="font-body-sm text-body-sm text-on-surface font-medium" data-k="email"></span></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0" data-k="role"></span></div></div>
+<div class="hidden p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm" id="invite-box">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">초대 코드 (7일, 1회용)</span>
+<span class="font-headline-sm text-headline-sm text-primary tracking-widest font-mono" data-k="invite"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant break-all" data-k="invite_link"></span>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-invite-share">
+<span class="material-symbols-outlined text-[18px]">share</span>
+        초대 링크 공유·복사
+      </button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex-1 min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-invite" data-admin>
+<span class="material-symbols-outlined text-[18px]">group_add</span>
+        가족 초대 코드 만들기
+      </button>
+</div>
+<div class="grid grid-cols-2 gap-space-sm btn-grid">
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-password">
+<span class="material-symbols-outlined text-[18px]">password</span>
+        비밀번호 변경
+      </button>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-pinset">
+<span class="material-symbols-outlined text-[18px] shrink-0">dialpad</span>
+        <span class="flex flex-col items-start leading-tight">
+          <span data-k="pin_title">간편 PIN 설정</span>
+          <span class="font-label-sm font-normal text-on-surface-variant" data-k="pin_sub">이 기기 미등록</span>
+        </span>
+      </button>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-lock">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+        이 기기 잠금
+      </button>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50" type="button" id="btn-camfind" data-admin>
+<span class="material-symbols-outlined text-[18px]">videocam</span>
+        카메라 다시 찾기
+      </button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex-1 min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button" id="btn-logout">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+        로그아웃
+      </button>
+</div>
+</div>
+<section class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm" aria-labelledby="quiet-title">
+<div><h3 id="quiet-title" class="font-headline-sm text-headline-sm text-on-surface tracking-tight">내 알림 시간</h3><p class="font-body-sm text-on-surface-variant mt-1">조용한 시간은 이 계정에만 적용돼요.</p></div>
+<label class="flex items-center gap-3 font-label-md"><input id="quiet-enabled" type="checkbox" class="w-5 h-5 accent-primary"><span>조용한 시간 사용</span></label>
+<div class="hs-quiet-times"><label class="flex flex-col gap-1 font-label-sm">시작<input id="quiet-start" type="time" value="23:00" class="min-h-[44px] rounded-lg bg-surface-container-low px-3 text-on-surface"></label><label class="flex flex-col gap-1 font-label-sm">종료<input id="quiet-end" type="time" value="07:00" class="min-h-[44px] rounded-lg bg-surface-container-low px-3 text-on-surface"></label></div>
+<div class="flex items-center gap-3"><button id="quiet-save" type="button" class="min-h-[44px] px-space-md rounded-xl bg-surface-container-high text-on-surface font-label-md">저장</button><span id="quiet-result" class="font-label-sm text-on-surface-variant" role="status"></span></div>
+</section>
+<div class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">기기 상태</h3>
+<!-- Health Stats Grid -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+          작동 상태
+        </div>
+<div class="font-headline-sm text-headline-sm text-on-surface" data-k="cam_state">정상 가동</div>
+<span class="font-label-sm text-label-sm text-primary" data-k="cam_state_sub">99.8% 가동률</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+          가동 시간
+        </div>
+<div class="font-headline-sm text-headline-sm text-on-surface" data-k="uptime">–</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">최근 24시간 중 수집</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+        마지막 수집: <span data-k="last_seen">확인 중</span>
+      </span>
+<span class="text-primary font-medium" data-k="fps">수집 소스 확인 중</span>
+</div>
+<div class="hs-device-footer"><div class="min-w-0"><strong class="font-label-md" data-k="sensor_title">Wi-Fi 센서 연결 안 됨</strong><span class="block font-body-sm text-on-surface-variant" data-k="sensor_detail">USB 보드 검색 및 배치 설정</span></div><span class="hs-device-state" data-k="sensor_status">미연결</span><a href="#sensors" class="hs-device-manage">관리</a></div>
+</div>
+<!-- Privacy Mode & Sensor Controls -->
+<div class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">프라이버시 &amp; 카메라 설정</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">소중한 사생활 및 야간 조명 세부 제어</p>
+</div>
+</div>
+<!-- Toggle 1: Privacy Mode -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start justify-between gap-space-md">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">프라이버시 모드</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-surface-container-high text-on-surface-variant" data-k="privacy_tag">차단 기능</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          집사가 방에 있거나 케이지를 청소할 때 렌즈를 수납하고 감지·저장을 멈춥니다. (관리자만 전환, 카메라 실제 상태 표시)
+        </p>
+</div>
+<button aria-label="프라이버시 모드 토글" class="shrink-0 w-12 h-7 rounded-full bg-surface-variant p-0.5 transition-colors duration-200 focus:outline-none disabled:opacity-50" id="privacy-toggle" type="button" data-admin>
+<div class="w-6 h-6 rounded-full bg-on-surface shadow-sm transform transition-transform duration-200" id="privacy-knob"></div>
+</button>
+</div>
+<!-- Toggle 2: IR LED Night Vision -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start justify-between gap-space-md">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">나이트 비전<br>(카메라 자동 IR)</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-primary/10 text-primary">카메라 설정</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          어두워지면 카메라가 적외선 모드로 자동 전환합니다. HomeStudio에서는 변경하지 않아요.
+        </p>
+</div>
+<button aria-label="나이트 비전 토글" class="shrink-0 w-12 h-7 rounded-full bg-primary p-0.5 transition-colors duration-200 focus:outline-none" id="ir-toggle" type="button" disabled>
+<div class="w-6 h-6 rounded-full bg-on-primary shadow-sm transform translate-x-5 transition-transform duration-200" id="ir-knob"></div>
+</button>
+</div>
+</div>
+<!-- Storage & Retention Management -->
+<div class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="hs-wrap-row flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">sd_card</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">저장 공간 &amp; 보관 주기</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">집 PC 로컬 롤링 스토리지</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-semibold"><span data-k="pct">21</span>% 사용 중</span>
+</div>
+<div class="flex flex-col gap-2 p-space-md rounded-xl bg-surface-container-low">
+<div class="hs-wrap-row flex items-baseline justify-between font-label-md text-label-md">
+<span class="text-on-surface font-semibold"><span data-k="used">3.2 GB</span> <span class="font-normal text-on-surface-variant">/ <span data-k="cap">15.0 GB</span></span></span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">디스크 여유 <span data-k="free">11.8 GB</span></span>
+</div>
+<!-- Segmented Visual Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container-highest overflow-hidden flex">
+<div class="h-full bg-primary rounded-full transition-all duration-500" id="storage-bar" style="width: 0%"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+          이벤트 클립·썸네일
+        </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-container-highest"></span>
+          여유 공간
+        </span>
+</div>
+</div>
+<!-- Retention Policy Detail -->
+<div class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low/70">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">auto_delete</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">자동 롤링 보관 (용량 한도)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          한도에 가까워지면 오래된 클립부터 정리돼요. 영상은 외부 클라우드로 전송되지 않습니다.
+        </p>
+</div>
+</div>
+<!-- Storage CTA Buttons -->
+<div class="flex items-center gap-space-sm btn-row">
+<button class="flex-1 min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50" type="button" disabled title="준비 중">
+<span class="material-symbols-outlined text-[18px]">cleaning_services</span>
+        캐시/용량 비우기
+      </button>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50" type="button" disabled title="준비 중">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+        백업 설정
+      </button>
+</div>
+</div>
+<div class="rounded-[20px] bg-surface-container p-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">최근 기기 로그</h3>
+</div>
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 hover:underline" type="button" onclick="location.hash='#timeline'">
+        전체 보기
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Item 1 -->
+<div data-tpl="log" class="hs-text-row p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary shrink-0" data-cls="dot"></span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface font-medium" data-k="title"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" data-k="sub"></span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0" data-k="when"></span>
+</div>
+</div>
+</div>
+<!-- Reassurance Footnote -->
+<div class="flex items-center justify-center gap-2 py-space-sm text-on-surface-variant/80">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-label-sm text-label-sm">HomeStudio 로컬 저장 · Tailscale 사설망 전용</span>
+</div>
+</div>
+</main><nav aria-label="주 메뉴" class="hs-primary-nav fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.3)]" data-active-classes="text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5"><div class="flex justify-around items-center h-16 px-space-md"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#home"><span class="material-symbols-outlined text-[24px]">night_shelter</span><span class="font-label-md text-label-md">홈</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="timeline" href="#timeline"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-md text-label-md">타임라인</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="status" href="#status"><svg class="hs-paw-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.1 10.1c1.2 0 2-1.3 1.8-2.8-.2-1.5-1.2-2.6-2.4-2.6S4.6 6 4.8 7.5c.2 1.5 1.1 2.6 2.3 2.6Zm4.9-1.2c1.3 0 2.2-1.4 2-3.1-.2-1.7-1.3-2.9-2.6-2.9s-2.1 1.4-1.9 3.1c.2 1.7 1.2 2.9 2.5 2.9Zm4.9 1.2c1.2 0 2.1-1.1 2.3-2.6.2-1.5-.5-2.8-1.7-2.8s-2.2 1.1-2.4 2.6c-.2 1.5.6 2.8 1.8 2.8ZM4.7 13.1c-.9-1-2.3-.8-3 .4-.8 1.1-.7 2.8.2 3.8.9 1 2.3.8 3-.4.8-1.1.7-2.8-.2-3.8Zm14.6 0c-.9 1-.9 2.7-.2 3.8.8 1.2 2.2 1.4 3 .4.9-1 .9-2.7.2-3.8-.8-1.2-2.2-1.4-3-.4ZM12 10c-3.5 0-7 3.9-7 7.5 0 2.5 1.7 3.9 3.8 3.1 1.9-.7 4.5-.7 6.4 0 2.1.8 3.8-.6 3.8-3.1 0-3.6-3.5-7.5-7-7.5Z"/></svg><span class="font-label-md text-label-md">상태</span><span class="active-indicator rounded-full mt-0.5"></span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 transition-colors text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-md text-label-md whitespace-nowrap">설정</span><span class="active-indicator rounded-full mt-0.5"></span></a></div></nav>
+

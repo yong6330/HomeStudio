@@ -1,0 +1,266 @@
+<!--body class="hs-desktop hs-session bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm min-h-[44px]"><button class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface hover:text-primary transition-colors" aria-label="타임라인으로 돌아가기" data-back><span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">클립 보기</h1></div><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></header><main class="hs-main flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="hs-session-layout flex flex-col w-full text-on-surface">
+<!-- Sub-Header Navigation Bar -->
+<div class="hs-session-heading px-margin py-space-sm flex items-center justify-between bg-surface-container-low shadow-sm">
+<button class="flex items-center gap-space-xs py-space-xs px-space-sm rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-secondary text-label-lg font-label-lg min-h-[44px]" data-back aria-label="타임라인으로 돌아가기">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span data-k="back_label">타임라인으로</span>
+</button>
+<div class="hs-session-titlebar">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface" data-k="session_title">활동 세션</span>
+<span class="hs-session-clip-position">클립 <strong data-k="clip_position">1 / 1</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button id="btn-share" aria-label="링크 복사" class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<div class="relative">
+<button id="btn-more" type="button" aria-label="더보기" aria-expanded="false" class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+<div id="more-menu" class="hidden absolute right-0 top-12 z-50 w-56 rounded-xl bg-surface-container-high shadow-xl overflow-hidden">
+<button type="button" data-more="save" class="w-full text-left px-4 min-h-[44px] font-label-md text-label-md text-on-surface hover:bg-surface-bright">클립 기기에 저장</button>
+<button type="button" data-more="fav" class="w-full text-left px-4 min-h-[44px] font-label-md text-label-md text-on-surface hover:bg-surface-bright">즐겨찾기 보관함에 추가</button>
+<button type="button" data-more="delete" class="w-full text-left px-4 min-h-[44px] font-label-md text-label-md text-error hover:bg-surface-bright">이 기록과 영상 삭제</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Video Player Canvas (16:9 Aspect) -->
+<div class="hs-session-video relative w-full aspect-video bg-surface-container-lowest overflow-hidden select-none group">
+<!-- Camera Image Source -->
+<video class="w-full h-full object-contain bg-black brightness-95 contrast-105" id="vid" playsinline muted preload="metadata"></video>
+<!-- Motion Path Overlay (SVG Stream) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 225">
+<defs>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<feGaussianBlur result="blur" stdDeviation="3"></feGaussianBlur>
+<feMerge>
+<feMergeNode in="blur"></feMergeNode>
+<feMergeNode in="SourceGraphic"></feMergeNode>
+</feMerge>
+</filter>
+</defs>
+<!-- Historic Motion Path Trail -->
+<path id="trail" d="" fill="none" filter="url(#glow)" opacity="0.85" stroke="#5af0b3" stroke-dasharray="4 4" stroke-width="2.5"></path>
+<!-- Previous checkpoint -->
+<circle id="trail-a" cx="-10" cy="-10" fill="#34d399" opacity="0.6" r="3.5"></circle>
+<circle id="trail-b" cx="-10" cy="-10" fill="#34d399" opacity="0.6" r="3.5"></circle>
+<!-- Target position marker -->
+<circle id="trail-end" cx="-10" cy="-10" fill="#5af0b3" filter="url(#glow)" r="5">
+<animate attributeName="r" dur="2s" repeatCount="indefinite" values="4;7;4"></animate>
+<animate attributeName="opacity" dur="2s" repeatCount="indefinite" values="0.7;1;0.7"></animate>
+</circle>
+</svg>
+<!-- Top Overlay: Time, Status, Battery -->
+<div class="absolute top-2 left-3 right-3 flex items-center justify-between pointer-events-none">
+<div class="flex items-center gap-space-xs px-2 py-1 rounded bg-surface-container-lowest/80 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="text-label-sm font-label-sm text-on-surface tracking-wider">REC</span>
+<span class="text-label-sm font-label-sm text-secondary" data-k="rec_time">2023.10.26 03:14:58 AM</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-lowest/80 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px] text-primary" data-k="cam_icon">nightlight</span>
+<span class="text-label-sm font-label-sm text-primary font-medium" data-k="cam_mode">촬영 시각 기준</span>
+</div>
+</div>
+<!-- AI Bounding Box Tag (Tracked over Hamster near water dish) -->
+<div class="absolute top-[46%] left-[51%] transform -translate-x-1/2 pointer-events-none flex flex-col items-center" id="tag">
+<div class="px-2 py-0.5 rounded-full bg-primary/20 backdrop-blur-md flex items-center gap-1 shadow-sm mb-1">
+<span class="material-symbols-outlined text-[14px] text-primary">pets</span>
+<span class="text-label-sm font-label-sm text-primary font-semibold" data-k="tag">움직임 감지</span>
+</div>
+<div class="w-28 h-20 rounded-lg bg-primary/10 shadow-[0_0_12px_rgba(90,240,179,0.35)]"></div>
+</div>
+<!-- Video Player Scrub & Controls Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-space-sm bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/40 to-transparent">
+<!-- Scrub Progress Bar -->
+<div class="hs-scrub relative w-full" id="scrub">
+<div class="hs-scrub-track bg-surface-container-highest/60 rounded-full">
+<div class="h-full bg-primary rounded-full relative" id="progress" style="width: 0%;">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3.5 h-3.5 rounded-full bg-primary shadow-md"></div>
+</div>
+<!-- Event highlight pin on track -->
+<div class="absolute left-[38%] top-0 bottom-0 w-1 bg-tertiary-container rounded-full" id="peak-pin" title="최대 움직임 시점"></div>
+</div>
+<input type="range" id="seek" min="0" max="0" step="0.1" value="0" aria-label="영상 재생 위치" disabled>
+</div>
+<!-- Controls Row -->
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-space-sm">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container/70 hover:bg-surface-container text-primary transition-colors" id="playBtn" disabled aria-label="재생" type="button">
+<span class="material-symbols-outlined text-[20px]" id="playIcon">play_arrow</span>
+</button>
+<div class="text-label-md font-label-md tracking-tight">
+<span class="text-on-surface font-semibold" id="cur">00:00</span>
+<span class="text-secondary/70"> / <span id="dur">00:00</span></span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<!-- Playback Speed -->
+<button class="px-2 py-1 rounded bg-surface-container/70 hover:bg-surface-container text-label-sm font-label-sm text-secondary hover:text-on-surface transition-colors" id="speedBtn" disabled aria-label="재생 속도 변경" type="button">
+<span id="speedText" class="">1.0x</span>
+</button>
+<!-- HD Quality Tag -->
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container text-label-sm font-label-sm font-bold tracking-tight">
+            <span id="quality">SD</span>
+          </span>
+<button id="fsBtn" disabled aria-label="전체 화면" type="button" class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container/70 hover:bg-surface-container text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<p id="player-status" class="hs-player-status" role="status" aria-live="polite">영상을 불러오는 중이에요.</p>
+<div class="hs-session-clip-nav grid grid-cols-2 gap-space-sm px-margin py-space-sm">
+<button id="btn-prev" class="py-space-sm px-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all flex flex-col items-start justify-center gap-0.5 shadow-sm min-h-[48px] disabled:opacity-40" type="button">
+<span class="flex items-center gap-1 text-label-md font-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">chevron_left</span>이전 클립</span>
+<span class="text-label-sm font-label-sm text-on-surface font-semibold" data-k="prev">이 세션의 첫 클립</span>
+</button>
+<button id="btn-next" class="py-space-sm px-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all flex flex-col items-end justify-center gap-0.5 shadow-sm min-h-[48px] disabled:opacity-40" type="button">
+<span class="flex items-center gap-1 text-label-md font-label-md text-secondary">다음 클립<span class="material-symbols-outlined text-[18px]">chevron_right</span></span>
+<span class="text-label-sm font-label-sm text-on-surface font-semibold" data-k="next">이 세션의 마지막 클립</span>
+</button>
+</div>
+<!-- Scrollable Detail Stream -->
+<div class="hs-session-details px-margin py-space-md flex flex-col gap-space-lg">
+<!-- Clip Event Information Card -->
+<div class="p-space-lg rounded-[20px] bg-surface-container-low shadow-sm flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-medium">활동 클립</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm" data-k="daypart">야간 · 기록 시각 기준</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight" data-k="title">새벽 수분 섭취 및 모래 구역 탐색</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-secondary hover:text-tertiary" id="favBtn" aria-label="즐겨찾기 전환" title="즐겨찾기">
+<span class="material-symbols-outlined text-[22px]" id="favIcon">bookmark_border</span>
+</button>
+</div>
+<!-- Key Stat Mosaic -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">감지 시각</span>
+<div class="flex items-center gap-1 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-tertiary">schedule</span>
+<span class="" data-k="start">03:14:10</span>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">활동 구간</span>
+<div class="flex items-center gap-1 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<span class="" data-k="duration">1분 30초</span>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">이동 거리</span>
+<div class="flex items-center gap-1 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">straighten</span>
+<span class=""><span data-k="dist">1,240</span> <span class="font-label-sm text-label-sm font-normal text-secondary">px</span></span>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">움직임 프레임</span>
+<div class="flex items-center gap-1 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-error">motion_photos_on</span>
+<span class=""><span data-k="frames">342</span> <span class="font-label-sm text-label-sm font-normal text-secondary">프레임</span></span>
+</div>
+</div>
+</div>
+<!-- Action Distribution Progress Bar -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between text-label-md font-label-md">
+<span class="text-secondary">움직임 비율 (행동 분류 준비 중)</span>
+<span class="text-on-surface font-semibold" data-k="ratio_label">움직임 · 정지</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500" id="ratio-a" style="width: 0%;" title="움직임"></div>
+<div class="h-full bg-tertiary-container transition-all duration-500" id="ratio-b" style="width: 0%;" title="정지"></div>
+</div>
+</div>
+</div>
+<div class="p-space-lg rounded-[20px] bg-surface-container-low shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">이번 클립에서 측정한 것</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">진단이 아닙니다. 이 영상에서 계산한 움직임만 보여 줘요.</p>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">방문 구역</span>
+<span class="font-body-sm text-body-sm text-on-surface" data-k="zone_names">없음</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">지나간 화면</span>
+<span class="font-body-sm text-body-sm text-on-surface" data-k="regions">없음</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">같은 길 왕복</span>
+<span class="font-body-sm text-body-sm text-on-surface" data-k="pace">계산 중</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary">제자리 회전 (참고)</span>
+<span class="font-body-sm text-body-sm text-on-surface" data-k="circle">계산 중</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-k="beh_line">오늘 행동 참고를 불러오는 중</p>
+</div>
+<section id="session-observations" class="hs-observation-list hidden p-space-lg rounded-[20px] bg-surface-container-low" aria-labelledby="session-observations-title">
+<h3 id="session-observations-title" class="font-headline-sm font-semibold">영상에서 살펴볼 동작 · 대표 구간</h3>
+<p class="font-body-sm text-on-surface-variant">표시한 시각은 선택한 영상 안의 구간이에요.</p>
+<div class="flex flex-col gap-2 mt-space-sm"><div data-tpl="session-observation" class="hs-observation-row"><span class="hs-observation-row-main"><strong data-k="title"></strong><span data-k="time"></span><small data-k="meta"></small></span><span class="hs-observation-state" data-k="state"></span></div></div>
+</section>
+<!-- Movement Path Mini Map (이동 궤적 미니맵) -->
+<div class="p-space-lg rounded-[20px] bg-surface-container-low shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">route</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">이동 궤적 미니맵</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary text-label-sm font-label-sm">카메라 화면 기준</span>
+</div>
+<!-- Enclosure 2D Schematic Card -->
+<div class="relative w-full aspect-video rounded-xl bg-surface-container-lowest overflow-hidden">
+<div class="hs-map" aria-hidden="true">
+<div data-region="좌상">좌상</div><div data-region="상">상</div><div data-region="우상">우상</div>
+<div data-region="좌">좌</div><div data-region="중앙">중앙</div><div data-region="우">우</div>
+<div data-region="좌하">좌하</div><div data-region="하">하</div><div data-region="우하">우하</div>
+</div>
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 160 90">
+<g id="map-zones"></g><path id="map-trail" d="" fill="none" opacity="0.95" stroke="#5af0b3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+<circle id="map-a" cx="-10" cy="-10" fill="#cbc6bd" r="2.2"></circle>
+<circle id="map-b" cx="-10" cy="-10" fill="#34d399" r="2.2"></circle>
+<circle id="map-end" cx="-10" cy="-10" fill="#5af0b3" r="3"></circle>
+</svg>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-secondary">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> 시작: <span data-k="start_zone">은신처 입구</span></span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> 종료: <span data-k="end_zone2">구역</span></span>
+</div>
+</div>
+<!-- Primary Action Buttons -->
+<div class="flex flex-col gap-space-sm pt-space-xs pb-space-lg">
+<!-- High priority Download Button -->
+<button class="w-full h-12 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs shadow-[0_0_20px_rgba(90,240,179,0.2)] hover:bg-primary-fixed transition-all active:scale-[0.99]" id="downloadBtn" disabled>
+<span class="material-symbols-outlined text-[20px]" id="downloadIcon">download</span>
+<span id="downloadText" class="" data-k="download">클립 기기에 저장 (MP4, 18MB)</span>
+</button>
+<a id="originalDownload" class="hs-action hidden w-full h-11 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors shadow-sm" download>
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>원본 영상 저장</span>
+</a>
+<!-- Favorite / Bookmark Button -->
+<button class="w-full h-11 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors shadow-sm" id="favoriteActionBtn">
+<span class="material-symbols-outlined text-[18px] text-tertiary" id="favActionIcon">star_outline</span>
+<span class="" data-k="fav_label">즐겨찾기 보관함에 추가</span>
+</button>
+<button class="hidden w-full h-11 rounded-xl bg-error-container text-on-error-container font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" id="btn-delete" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>이 기록과 영상 삭제</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<nav aria-label="주 메뉴" class="hs-desktop-only hs-primary-nav fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.3)]" data-active-classes="text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5"><div class="flex justify-around items-center h-16 px-space-md"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#home"><span class="material-symbols-outlined text-[24px]">night_shelter</span><span class="font-label-md text-label-md">홈</span><span class="active-indicator rounded-full mt-0.5"></span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 transition-colors text-on-surface font-semibold [&amp;_span.material-symbols-outlined]:text-primary [&amp;_.active-indicator]:bg-primary [&amp;_.active-indicator]:w-1.5 [&amp;_.active-indicator]:h-1.5" data-path="timeline" href="#timeline"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-md text-label-md">타임라인</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="status" href="#status"><svg class="hs-paw-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.1 10.1c1.2 0 2-1.3 1.8-2.8-.2-1.5-1.2-2.6-2.4-2.6S4.6 6 4.8 7.5c.2 1.5 1.1 2.6 2.3 2.6Zm4.9-1.2c1.3 0 2.2-1.4 2-3.1-.2-1.7-1.3-2.9-2.6-2.9s-2.1 1.4-1.9 3.1c.2 1.7 1.2 2.9 2.5 2.9Zm4.9 1.2c1.2 0 2.1-1.1 2.3-2.6.2-1.5-.5-2.8-1.7-2.8s-2.2 1.1-2.4 2.6c-.2 1.5.6 2.8 1.8 2.8ZM4.7 13.1c-.9-1-2.3-.8-3 .4-.8 1.1-.7 2.8.2 3.8.9 1 2.3.8 3-.4.8-1.1.7-2.8-.2-3.8Zm14.6 0c-.9 1-.9 2.7-.2 3.8.8 1.2 2.2 1.4 3 .4.9-1 .9-2.7.2-3.8-.8-1.2-2.2-1.4-3-.4ZM12 10c-3.5 0-7 3.9-7 7.5 0 2.5 1.7 3.9 3.8 3.1 1.9-.7 4.5-.7 6.4 0 2.1.8 3.8-.6 3.8-3.1 0-3.6-3.5-7.5-7-7.5Z"/></svg><span class="font-label-md text-label-md">상태</span><span class="active-indicator rounded-full mt-0.5"></span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-md text-label-md whitespace-nowrap">설정</span><span class="active-indicator rounded-full mt-0.5"></span></a></div></nav>

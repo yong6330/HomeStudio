@@ -1,0 +1,6 @@
+numpy
+opencv-python-headless
+fastapi
+uvicorn
+httpx  # tests only (fastapi TestClient)
+pyserial==3.5  # USB serial discovery and bounded CSI receiver test

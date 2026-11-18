@@ -1,0 +1,131 @@
+<!--body class="bg-background font-body-md text-body-md text-on-surface min-h-screen flex flex-col"-->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant/30 active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Sleep Schedule</h1></div><div class="flex items-center gap-space-sm"><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-10">
+<!-- Onboarding Progress Tracker -->
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md">
+<span class="flex items-center gap-1.5 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        돌봄 리듬 설정
+      </span>
+<span class="text-primary font-semibold tracking-wide">4/5 단계</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[80%] transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<div class="inline-flex items-center gap-1.5 self-start px-2.5 py-1 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">bedtime</span>
+<span>야행성 바이오리듬 케어</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight whitespace-pre-line">햄스터의 생체 리듬에 맞춘
+'돌봄 하루' 기준 시간</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">야행성 소동물의 활동 패턴을 반영해 건강 통계를 자연스럽게 집계합니다.</p>
+</div>
+<!-- Explanatory Nocturnal Cycle Callout -->
+<div class="bg-surface-container rounded-2xl p-space-md mb-space-lg shadow-sm">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center shrink-0 text-tertiary">
+<span class="material-symbols-outlined text-[22px]">routine</span>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<span class="font-label-lg text-label-lg text-tertiary font-semibold flex items-center gap-1">
+          왜 낮 12시 기준인가요?
+        </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          햄스터는 주로 늦은 밤과 새벽에 깨어나 활동해요. 정오(12:00)부터 다음 날 정오까지를 하나의 <span class="text-primary font-medium">'돌봄 하루'</span>로 묶으면 자정 전후로 끊기지 않고 하나의 온전한 활동 주기가 분석됩니다.
+        </p>
+</div>
+</div>
+</div>
+<!-- Care-Day Start Time Dial / Stepper Card -->
+<div class="bg-surface-container rounded-2xl p-space-lg mb-space-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<label class="font-label-lg text-label-lg text-on-surface">케어 데이 시작 기준</label>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">권장 설정</span>
+</div>
+<!-- Interactive Time Slot Display -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md flex items-center justify-between">
+<button aria-label="시간 줄이기" class="w-11 h-11 rounded-xl bg-surface-container-high hover:bg-surface-variant active:scale-95 flex items-center justify-center text-on-surface transition-all" id="btn-time-minus" type="button">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-primary font-medium tracking-wide uppercase" id="time-period-tag">낮 / 정오</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight" id="time-display-hour">12:00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">기준</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-0.5" id="time-until">다음 날 11:59까지 1일로 집계</span>
+</div>
+<button aria-label="시간 늘리기" class="w-11 h-11 rounded-xl bg-surface-container-high hover:bg-surface-variant active:scale-95 flex items-center justify-center text-on-surface transition-all" id="btn-time-plus" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Cycle Visualizer Spark -->
+<div class="flex items-center justify-between px-2 pt-1 text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>낮: 휴식·수면</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">arrow_forward</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>밤·새벽: 쳇바퀴·탐색</span>
+</div>
+</div>
+</div>
+<!-- Quiet Hours & Safe Notification Filter Card -->
+<div class="bg-surface-container rounded-2xl p-space-lg mb-space-xl flex flex-col gap-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">notifications_paused</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">수면 중 안심 알림 필터링</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">보호자가 주무시는 시간 동안 불필요한 일상 알림을 무음으로 보관합니다.</p>
+</div>
+<!-- Mint Toggle Switch -->
+<button aria-checked="true" class="relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full bg-primary p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" id="quiet-toggle" role="switch" type="button">
+<span class="sr-only">안심 알림 필터링 켜기</span>
+<span class="translate-x-5 pointer-events-none inline-block h-6 w-6 rounded-full bg-on-primary shadow-sm transform transition duration-200 ease-in-out" id="toggle-circle"></span>
+</button>
+</div>
+<!-- Sleep Schedule Chip & Range -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">nightlight</span>
+          보호자 취침 시간대
+        </span>
+<span class="font-label-md text-label-md text-primary font-semibold">23:00 ~ 07:00</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">
+          쳇바퀴와 구역 방문 같은 <span class="text-on-surface font-medium">정상 야간 활동은 조용히 기록</span>되며, 장시간 미활동이나 탈출 같은 <span class="text-tertiary font-medium">응급 이상 징후만 즉각 진동·알림</span>을 전달합니다.
+        </p>
+</div>
+</div>
+</div>
+<!-- Nighttime Gentle Illustration / Mood Preview -->
+<div class="relative rounded-2xl overflow-hidden bg-surface-container-low p-space-md flex items-center gap-space-md mb-space-xl">
+<img class="w-16 h-16 rounded-xl object-cover shrink-0" src="assets/art-schedule.jpg"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-medium">조용하고 평온한 수면 공간</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">보호자의 숙면과 햄스터의 활기찬 밤을 부드럽게 조화시키는 안심 라이프사이클.</span>
+</div>
+</div>
+<div class="hidden flex items-start gap-1.5 mt-1 px-1 py-1.5 rounded-lg bg-error-container/30" id="schedule-error"><span class="material-symbols-outlined text-[17px] text-error shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span><p class="font-body-sm text-body-sm text-on-error-container leading-tight" data-k="schedule-error"></p></div>
+<!-- Sticky Bottom Navigation CTA Area -->
+<div class="sticky bottom-4 z-20 w-full mt-auto">
+<button class="w-full h-14 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-[0_12px_28px_rgba(90,240,179,0.25)] hover:bg-primary-fixed active:scale-[0.98] transition-all" id="btn-next" type="button">
+<span>다음 (5/5 단계)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>

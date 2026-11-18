@@ -1,0 +1,171 @@
+<!--body class="bg-surface text-on-surface flex flex-col min-h-screen"-->
+<header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="돌아가기" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><img alt="HomeStudio" class="hs-brand-lockup" src="assets/homestudio-wordmark.svg"><h1 class="font-headline-sm text-headline-sm text-on-surface truncate ml-space-xs">Family Invite Settings</h1></div><div class="flex items-center gap-space-sm"><a href="#settings" aria-label="설정" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-10 space-y-space-lg">
+<!-- Friendly Hero Intro with subtle ambient glow -->
+<section class="relative overflow-hidden rounded-xl bg-surface-container-low p-space-lg">
+<div class="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+<span class="font-label-md text-label-md text-primary tracking-wide">공동 집사 케어 네트워크</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">가족 초대</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        <span data-k="hero">초대 링크나 코드를 공유하여 가족과 함께 돌보세요.</span>
+      </p>
+</div>
+</section>
+<!-- Generated Invite Link & Code Card -->
+<section class="rounded-xl bg-surface-container-low p-space-lg shadow-xl relative overflow-hidden flex flex-col space-y-space-lg" id="invite-card">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary/15 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold" data-k="link_chip">유효한 초대 링크</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">일회용 안심 코드</span>
+</div>
+<!-- URL Box -->
+<div class="flex flex-col space-y-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">초대 링크 URL</label>
+<div class="flex items-center justify-between bg-surface-container rounded-lg px-space-md py-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface truncate mr-space-sm select-all" id="invite-url-text">
+<span data-k="url">-</span>
+        </span>
+<button class="shrink-0 h-9 px-space-md rounded-full bg-surface-bright text-on-surface hover:text-primary active:scale-95 transition-all font-label-md text-label-md flex items-center gap-1" id="btn-copy-url" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>복사</span>
+</button>
+</div>
+</div>
+<!-- 8-Character Large Code Box -->
+<div class="flex flex-col items-center justify-center bg-surface-container rounded-xl p-space-lg text-center space-y-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase" data-k="code_label">홈스페이스 접속 코드</span>
+<div class="w-full py-space-sm px-space-md rounded-lg bg-surface-container-lowest flex items-center justify-center tracking-[0.28em] font-headline-lg text-headline-lg text-primary select-all">
+<span data-k="code">----</span>
+      </div>
+<p class="font-label-sm text-label-sm text-secondary">
+        HomeStudio 시작 화면의 '가족 코드로 시작하기'에 위 코드를 직접 입력해도 연결됩니다.
+      </p>
+</div>
+<!-- Action Buttons Row -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-12 w-full rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform shadow-md" id="btn-copy-link-main" type="button">
+<span class="material-symbols-outlined text-[20px]">link</span>
+<span data-k="main_btn">링크 복사</span>
+</button>
+<button class="h-12 w-full rounded-full bg-tertiary-container text-on-tertiary-container font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform" id="btn-share-kakao" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span>카카오톡 / 공유</span>
+</button>
+</div>
+<!-- Expiry info banner -->
+<div class="rounded-lg bg-surface-container p-space-md flex flex-col space-y-space-xs text-on-surface-variant">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[18px] text-tertiary">schedule</span>
+<span class="font-label-md text-label-md font-medium text-on-surface" data-k="expiry">24시간 후 만료 (오늘 23:59까지 유효)</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary pl-6 leading-relaxed">
+        <span data-k="expiry_note">1회 참여가 끝나면 코드는 자동으로 비활성화됩니다.</span>
+      </p>
+</div>
+</section>
+<!-- Pending Invites Section -->
+<section class="flex flex-col space-y-space-sm" id="pending-sec">
+<div class="flex items-center justify-between px-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">대기 중인 초대</h3>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary" data-k="pending_count">1건</span>
+</div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex items-center justify-between" data-tpl="pending">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">outgoing_mail</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface truncate" data-k="name">가족 집사 1</span>
+<span class="font-label-sm text-label-sm text-tertiary px-1.5 py-0.5 rounded bg-tertiary/10">대기 중</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate" data-k="sub">10분 전 전송됨 · 유효시간 23시간 50분 남음</span>
+</div>
+</div>
+<button class="shrink-0 ml-space-sm h-9 px-space-md rounded-full bg-error-container text-on-error-container hover:opacity-90 active:scale-95 transition-all font-label-sm text-label-sm flex items-center gap-1" data-revoke type="button">
+<span>초대 취소</span>
+</button>
+</div>
+</section>
+<!-- Current Family Members Card -->
+<section class="flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">함께 돌보는 가족</h3>
+<span class="font-label-sm text-label-sm text-secondary" data-k="member_count">2명 활동 중</span>
+</div>
+<div class="rounded-xl bg-surface-container-low divide-y divide-surface-container overflow-hidden">
+<!-- Member 1: Admin / Self -->
+<div class="p-space-md flex items-center justify-between" data-tpl="admin">
+<div class="flex items-center gap-space-md">
+<div class="relative w-11 h-11 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">face_4</span>
+<span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">crown</span>
+</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface" data-k="name"></span>
+<span class="font-label-sm text-label-sm text-primary px-1.5 py-0.5 rounded bg-primary/10" data-show="me">나</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">대표 관리자 · 전체 권한</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>기기 마스터</span>
+</div>
+</div>
+<!-- Member 2: Co-guardian -->
+<div class="p-space-md flex flex-col gap-2" data-tpl="member">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">face_6</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface" data-k="name"></span>
+<span class="font-label-sm text-label-sm text-secondary px-1.5 py-0.5 rounded bg-surface-variant" data-k="role"></span><span class="font-label-sm text-label-sm text-primary px-1.5 py-0.5 rounded bg-primary/10 hidden" data-show="me">나</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary" data-k="sub"></span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">videocam</span>
+<span data-k="right">보기</span>
+</div>
+</div>
+<div class="hidden flex gap-1 overflow-x-auto" data-actions>
+<button class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm" data-make="subadmin" type="button">부관리자</button>
+<button class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm" data-make="member" type="button">가족</button>
+<button class="h-9 px-3 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm" data-transfer type="button">스페이스 양도</button>
+<button class="h-9 px-3 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm" data-remove type="button">가족에서 빼기</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Security & Privacy Notice Card -->
+<footer class="rounded-xl bg-surface-container-lowest p-space-md flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">encrypted</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold">보안 연결 보호 중</span>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+        HomeStudio 영상은 집 PC에만 저장되고, 로그인한 가족에게만 Tailscale 암호화 연결로 보여 줘요. 외부 클라우드로 보내지 않아요.
+      </p>
+</div>
+</footer>
+<!-- Toast Feedback Overlay for copy actions -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-surface-bright text-on-surface px-space-lg py-space-sm rounded-full shadow-2xl font-label-md text-label-md flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-200 z-50" id="toast">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span id="toast-message">클립보드에 복사되었습니다</span>
+</div>
+</div>
+</main>
